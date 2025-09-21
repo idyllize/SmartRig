@@ -1,0 +1,136 @@
+@echo off
+REM SmartRig AI Tuner Pro - Windows Launch Script
+REM This script ensures proper setup and launches the application
+
+title SmartRig AI Tuner Pro
+color 0A
+
+echo ============================================================
+echo    SmartRig AI Tuner Pro - Launcher
+echo    Version 1.0.0 - No API Keys Required!
+echo ============================================================
+echo.
+
+REM Check if Python is installed
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERROR] Python is not installed or not in PATH
+    echo.
+    echo Please install Python 3.8 or higher from:
+    echo https://www.python.org/downloads/
+    echo.
+    echo Make sure to check "Add Python to PATH" during installation!
+    echo.
+    pause
+    exit /b 1
+)
+
+echo [OK] Python detected
+echo.
+
+REM Check if main script exists
+if not exist "smartrig_tuner.py" (
+    echo [ERROR] smartrig_tuner.py not found!
+    echo Please ensure this batch file is in the same folder as the Python script.
+    echo.
+    pause
+    exit /b 1
+)
+
+REM Check if it's first run (no config file)
+if not exist "%USERPROFILE%\.smartrig_tuner\config.json" (
+    echo [INFO] First run detected - Running setup...
+    echo.
+    
+    REM Try to run quickstart for automatic setup
+    if exist "quickstart.py" (
+        echo Running automatic setup...
+        python quickstart.py
+    ) else (
+        echo Installing dependencies manually...
+        echo.
+        
+        REM Install required packages
+        echo Installing psutil...
+        pip install psutil >nul 2>&1
+        
+        echo Installing numpy...
+        pip install numpy >nul 2>&1
+        
+        echo Installing pandas...
+        pip install pandas >nul 2>&1
+        
+        echo Installing scikit-learn...
+        pip install scikit-learn >nul 2>&1
+        
+        echo Installing matplotlib...
+        pip install matplotlib >nul 2>&1
+        
+        echo.
+        echo [OK] Core dependencies installed
+        
+        REM Try to install optional packages
+        echo Installing optional GPU monitoring...
+        pip install gputil >nul 2>&1
+        
+        echo Installing Windows-specific tools...
+        pip install wmi >nul 2>&1
+        
+        echo.
+        echo [OK] Setup complete!
+    )
+    
+    echo.
+    timeout /t 2 >nul
+)
+
+REM Launch the application
+echo ============================================================
+echo    Launching SmartRig AI Tuner Pro...
+echo ============================================================
+echo.
+
+REM Run with elevated privileges if possible (for hardware control)
+REM Check if we have admin rights
+net session >nul 2>&1
+if %errorlevel% == 0 (
+    echo [OK] Running with Administrator privileges
+    echo      Full hardware control enabled
+) else (
+    echo [INFO] Running without Administrator privileges
+    echo       Some features may be limited
+    echo.
+    echo       To enable full hardware control, right-click
+    echo       this file and select "Run as Administrator"
+)
+
+echo.
+echo Starting application...
+echo.
+
+REM Launch Python script
+python smartrig_tuner.py
+
+REM Check if app crashed
+if %errorlevel% neq 0 (
+    echo.
+    echo ============================================================
+    echo [ERROR] Application crashed or was terminated
+    echo.
+    echo Common issues:
+    echo   1. Missing dependencies - Run: pip install -r requirements.txt
+    echo   2. Python version - Requires Python 3.8 or higher
+    echo   3. GPU drivers - Update to latest version
+    echo   4. Antivirus blocking - Add exception for this folder
+    echo.
+    echo Check the error message above for details.
+    echo ============================================================
+    echo.
+    pause
+) else (
+    echo.
+    echo Application closed successfully.
+    timeout /t 2 >nul
+)
+
+exit /b %errorlevel%

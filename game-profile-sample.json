@@ -1,0 +1,133 @@
+{
+  "profile_info": {
+    "name": "Cyberpunk 2077 Ultra RT",
+    "game": "Cyberpunk2077.exe",
+    "version": "1.0",
+    "created": "2025-01-20T10:30:00",
+    "author": "SmartRig Community",
+    "description": "Optimized for ray tracing at 1440p with DLSS",
+    "hardware_tested": {
+      "cpu": "Intel i7-12700K / AMD Ryzen 7 5800X",
+      "gpu": "RTX 3080 / RTX 4070",
+      "ram": "32GB DDR4-3200"
+    }
+  },
+  
+  "detection_rules": {
+    "process_name": "Cyberpunk2077.exe",
+    "window_title": "Cyberpunk 2077",
+    "min_ram_mb": 8000,
+    "auto_apply": true,
+    "priority": 100
+  },
+  
+  "performance_targets": {
+    "target_fps": 60,
+    "min_acceptable_fps": 45,
+    "target_resolution": "2560x1440",
+    "ray_tracing": true,
+    "dlss_enabled": true,
+    "dlss_mode": "balanced"
+  },
+  
+  "cpu_settings": {
+    "governor": "performance",
+    "min_frequency_mhz": 3500,
+    "max_frequency_mhz": 5000,
+    "boost_enabled": true,
+    "hyperthreading": true,
+    "core_parking": false,
+    "affinity_mask": "0xFFFF",
+    "priority_class": "high",
+    "undervolt_mv": -50
+  },
+  
+  "gpu_settings": {
+    "power_limit_percent": 110,
+    "temp_limit_celsius": 83,
+    "core_offset_mhz": 50,
+    "memory_offset_mhz": 200,
+    "fan_curve": [
+      {"temp": 30, "fan": 30},
+      {"temp": 50, "fan": 40},
+      {"temp": 60, "fan": 55},
+      {"temp": 70, "fan": 70},
+      {"temp": 80, "fan": 85},
+      {"temp": 85, "fan": 100}
+    ],
+    "voltage_curve_optimization": true,
+    "prefer_max_performance": true
+  },
+  
+  "memory_settings": {
+    "clear_standby_list": true,
+    "large_page_support": true,
+    "priority": "high",
+    "virtual_memory_gb": 16,
+    "shader_cache_size_gb": 10
+  },
+  
+  "thermal_management": {
+    "aggressive_fan": true,
+    "thermal_throttle_offset": 5,
+    "repaste_reminder_days": 365,
+    "dust_filter_reminder_days": 90,
+    "case_fans_max": true
+  },
+  
+  "windows_optimizations": {
+    "game_mode": true,
+    "hardware_scheduling": true,
+    "disable_fullscreen_optimizations": false,
+    "disable_xbox_game_bar": true,
+    "power_plan": "Ultimate Performance",
+    "usb_selective_suspend": false,
+    "pcie_link_state": "off"
+  },
+  
+  "process_optimizations": {
+    "kill_processes": [
+      "SearchUI.exe",
+      "cortana.exe",
+      "OneDrive.exe"
+    ],
+    "suspend_processes": [
+      "Steam.exe",
+      "Discord.exe",
+      "chrome.exe"
+    ],
+    "set_affinity_away": [
+      "System",
+      "antimalware.exe"
+    ]
+  },
+  
+  "network_optimizations": {
+    "disable_nagle": true,
+    "tcp_ack_frequency": 1,
+    "disable_network_throttling": true,
+    "qos_packet_scheduler": false
+  },
+  
+  "monitoring_overrides": {
+    "update_interval_ms": 2000,
+    "log_detailed_metrics": true,
+    "capture_frame_times": true,
+    "benchmark_mode": false
+  },
+  
+  "rollback_settings": {
+    "create_restore_point": true,
+    "save_current_state": true,
+    "auto_rollback_on_crash": true,
+    "rollback_timeout_seconds": 300
+  },
+  
+  "notes": [
+    "Best with latest NVIDIA drivers (546.xx or newer)",
+    "Disable Steam overlay for +2-3 FPS",
+    "Set Crowd Density to Medium for better CPU performance",
+    "DLSS 3 Frame Generation recommended for 40-series cards",
+    "Consider undervolting GPU for better thermals"
+  ]
+}

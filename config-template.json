@@ -1,0 +1,115 @@
+{
+  "app_settings": {
+    "version": "1.0.0",
+    "auto_start": false,
+    "minimize_to_tray": true,
+    "update_interval_ms": 1000,
+    "graph_history_seconds": 120,
+    "dark_mode": true
+  },
+  
+  "monitoring": {
+    "cpu_monitoring": true,
+    "gpu_monitoring": true,
+    "memory_monitoring": true,
+    "disk_monitoring": false,
+    "network_monitoring": false,
+    "process_monitoring": true,
+    "game_detection": true
+  },
+  
+  "safety_limits": {
+    "max_cpu_temp_celsius": 85,
+    "max_gpu_temp_celsius": 83,
+    "max_cpu_usage_percent": 95,
+    "max_memory_usage_percent": 90,
+    "throttle_warning_temp": 75,
+    "critical_shutdown_temp": 95
+  },
+  
+  "ml_settings": {
+    "auto_train": true,
+    "min_data_points": 100,
+    "retrain_interval_hours": 168,
+    "model_type": "random_forest",
+    "n_estimators": 100,
+    "max_depth": 10,
+    "anomaly_contamination": 0.1,
+    "prediction_horizon_seconds": 60
+  },
+  
+  "optimization": {
+    "auto_tune_enabled": false,
+    "aggressive_mode": false,
+    "prefer_performance": false,
+    "prefer_efficiency": false,
+    "fan_control": false,
+    "voltage_control": false,
+    "frequency_control": false
+  },
+  
+  "profiles": {
+    "default_profile": "Balanced",
+    "game_specific_profiles": true,
+    "profile_switching_delay_ms": 3000,
+    "save_profile_history": true
+  },
+  
+  "data_management": {
+    "database_max_size_mb": 500,
+    "log_retention_days": 30,
+    "export_format": "csv",
+    "backup_enabled": true,
+    "backup_interval_days": 7,
+    "compression": true
+  },
+  
+  "ui_preferences": {
+    "theme": "dark",
+    "graph_colors": {
+      "cpu": "#00a8ff",
+      "gpu": "#00ff00",
+      "memory": "#ff00ff",
+      "temperature": "#ff0000"
+    },
+    "font_size": 10,
+    "show_tooltips": true,
+    "animations": true,
+    "transparency": 0.95
+  },
+  
+  "game_detection_rules": {
+    "process_patterns": [
+      "*.exe",
+      "game*",
+      "steam*",
+      "epic*",
+      "origin*",
+      "uplay*",
+      "battle.net*"
+    ],
+    "min_cpu_usage": 10,
+    "min_gpu_usage": 10,
+    "min_memory_usage": 5
+  },
+  
+  "notification_settings": {
+    "thermal_warnings": true,
+    "performance_alerts": true,
+    "anomaly_detection": true,
+    "profile_changes": false,
+    "optimization_complete": true,
+    "sound_enabled": false
+  },
+  
+  "advanced": {
+    "debug_mode": false,
+    "log_level": "INFO",
+    "experimental_features": false,
+    "hardware_acceleration": true,
+    "multi_gpu_support": false,
+    "custom_sensors": [],
+    "api_endpoints": {},
+    "plugin_directory": "plugins/"
+  }
+}
